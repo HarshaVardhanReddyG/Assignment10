@@ -1,0 +1,160 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Welcome to Overleaf --- just edit your LaTeX on the left,
+% and we'll compile it for you on the right. If you open the
+% 'Share' menu, you can invite other users to edit at the same
+% time. See www.overleaf.com/learn for more info. Enjoy!
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Inbuilt themes in beamer
+\documentclass{beamer}
+
+%packages:
+% \usepackage{tfrupee}
+% \usepackage{amsmath}
+% \usepackage{amssymb}
+% \usepackage{gensymb}
+% \usepackage{txfonts}
+
+% \def\inputGnumericTable{}
+
+% \usepackage[latin1]{inputenc}                                 
+% \usepackage{color}                                            
+% \usepackage{array}                                            
+% \usepackage{longtable}                                        
+% \usepackage{calc}                                             
+% \usepackage{multirow}                                         
+% \usepackage{hhline}                                           
+% \usepackage{ifthen}
+% \usepackage{caption} 
+% \captionsetup[table]{skip=3pt}  
+% \providecommand{\pr}[1]{\ensuremath{\Pr\left(#1\right)}}
+% \providecommand{\cbrak}[1]{\ensuremath{\left\{#1\right\}}}
+% %\renewcommand{\thefigure}{\arabic{table}}
+% \renewcommand{\thetable}{\arabic{table}}      
+
+\setbeamertemplate{caption}[numbered]{}
+
+\usepackage{enumitem}
+\usepackage{tfrupee}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{gensymb}
+\usepackage{graphicx}
+\usepackage{txfonts}
+
+\def\inputGnumericTable{}
+
+\usepackage[latin1]{inputenc}                                 
+\usepackage{color}                                  \usepackage{textcomp, gensymb}         
+\usepackage{array}                                            
+\usepackage{longtable}                                        
+\usepackage{calc}                                             
+\usepackage{multirow}                                         
+\usepackage{hhline}                             
+\usepackage{mathtools}
+\usepackage{ifthen}
+\usepackage{caption} 
+\providecommand{\pr}[1]{\ensuremath{\Pr\left(#1\right)}}
+\providecommand{\cbrak}[1]{\ensuremath{\left\{#1\right\}}}
+\renewcommand{\thefigure}{\arabic{table}}
+\renewcommand{\thetable}{\arabic{table}}   
+\providecommand{\brak}[1]{\ensuremath{\left(#1\right)}}
+
+% Theme choice:
+\usetheme{CambridgeUS}
+
+% Title page details: 
+\title{Assignment 10} 
+\author[CS21BTECH11017]{G HARSHA VARDHAN REDDY (CS21BTECH11017)}
+\date{\today}
+\logo{\large{AI1110}}
+
+
+\begin{document}
+
+% Title page frame
+\begin{frame}
+    \titlepage 
+\end{frame}
+\logo{}
+
+
+% Outline frame
+\begin{frame}{Outline}
+    \tableofcontents
+\end{frame}
+
+%\section{Abstract}
+%\begin{frame}{Abstract}
+%\begin{block}{} This document contains $3^{rd}$ %problem from the chapter $5$ in the book %\textbf{Papoulis Pillai Probability Random %Variables and Stochastic Processes.}
+%\end{block}
+
+%\end{frame}
+
+
+\section{Problem Statement}
+\begin{frame}{Problem Statement}
+
+    \begin{block} {Papoulis Pillai Probability Random Variables and Stochastic Processes\\ 
+    Exercise : 5-40}  Let $x$ denote the event "the number of failures that precede the $nth$ success" so that $x + n$
+represents the total number of trials needed to generate n successes. In that case, the event
+${x=k}$ occurs if and only if the last trial results in a success and among the previous
+$(x + n -1)$ trials there are $n -1$ successes (or $x$ failures). This gives an alternate formula
+for the Pascal (or negative binomial) distribution as follows:
+\begin{align}
+    P\cbrak{X=k}=\binom{n+k-1}{k}p^n q^k=\binom{-n}{k}p^n (-q)^{k} ,k=0,1,2,\dots \label{1}
+\end{align}
+Find $\Gamma_z$ and show that $\eta_x=\frac{nq}{p}$ and $\sigma^2_x = \frac{nq}{p^2}$
+    \end{block}
+\end{frame}
+\section{Pascal distribution}
+\begin{frame}{Pascal or Negative binomial distribution}
+\begin{block}{Pascal distribution}
+Pascal random variable describes the number of trials until the $k^{th}$ success, which is why it is sometimes called the "$k^{th} order $ interarrival time for a Bernoulli process". 
+Let $X_k$ be a $k^{th} order $ Pascal random variable. Then its PMF is given by
+\begin{align}
+    p_{X_k}=\binom{n+k-1}{k} p^n q^k \label{2}
+\end{align}
+\end{block}
+\end{frame}
+
+\section{Solution}
+\begin{frame}{Solution}
+    As 
+    \begin{align}
+        \Gamma(z)&=\sum_{k=0}^\infty p_{X_k}z^k
+    \end{align}
+From \eqref{1} and \eqref{2}
+\begin{align}
+    \Gamma(z)&=\sum_{k=0}^\infty \binom{-n}{k}p^n (-q)^{k}z^k\\
+    &=p^n \sum_{k=0}^\infty \binom{-n}{k} (-qz)^k\\
+    \implies \Gamma(z)&=p^n (1-qz)^{-n}
+    \label{6}
+\end{align}
+And We know that mean $(\eta_X) =\Gamma^\prime(1)$
+and $\Gamma^{\prime\prime}(1) +\eta_X = \sigma_X ^2 + \eta_X ^2$
+\end{frame}
+\begin{frame}{}
+From \eqref{6},
+\begin{align}
+    \Gamma^\prime(z) &= p^n(-q)(-n)(1-qz)^{-(n+1)}\\
+    \implies \Gamma^\prime(1) &= p^n nq (1-q)^{-(n+1)}\\
+    \implies \eta_X&=\frac{nqp^n}{p^{(n+1)}}=\frac{nq}{p}........(\text{since} p+q=1)\\
+    %\vspace{pt}
+    \Gamma^{\prime\prime}(z)&= p^n nq(n+1)q(1-qz)^{-(n+2)}\\
+    \implies \Gamma^{\prime\prime}(1)&= p^n n(n+1)q^2(1-q)^{-(n+2)}\\
+    &=\frac{n(n+1)p^nq^2}{p^{n+2}}\\
+    \implies  \sigma_X ^2 + \eta_X ^2 &=\frac{n(n+1)q^2}{p^{2}} +\eta_X
+\end{align}    
+\end{frame}
+\begin{frame}{}
+    \begin{align}
+        \implies  \sigma_X ^2 &=\frac{n(n+1)q^2}{p^{2}} +\frac{nq}{p}- \left(\frac{nq}{p}\right)^2\\
+        &=\frac{nq^2+npq}{p^2}=\frac{nq(p+q)}{p^2}\\
+        \implies \sigma_X^2 &=\frac{nq}{p^2}
+    \end{align}
+\end{frame}
+ 
+\end{document}
